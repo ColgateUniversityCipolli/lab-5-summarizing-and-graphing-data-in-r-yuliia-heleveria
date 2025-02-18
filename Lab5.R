@@ -23,7 +23,8 @@ essentia.data <- read_csv("data/essentia.data.csv") %>%
                                    essentia.data.allentown$overall_loudness > UF,
                                  T, F)) |>
   #Part 4 - create a column description
-  mutate(if (out.of.range){
+  rowwise()|> #apply row by row
+  mutate(description = if (out.of.range){
     description = "Out of Range"
     }else if(unusual){
       description = "Outlying"
