@@ -1,19 +1,27 @@
-#Write headers!!!
+################################################################################
+# LAB 5
+# YULIIA HELEVERIA
+# MATH 240LB - SPRING 2025
+################################################################################
 
-
-#load packages
+################################################################################
+# Load packages
+################################################################################
 library("tidyverse")
 library("xtable")
 library("patchwork")
 
-#Coding Task
-#Step 1
-#Part 1 - group data by artist
-#load data frames for all tracks and allentown
+################################################################################
+# Step 1 - create a function to determine if Allentown
+# is within range for each band
+################################################################################
+#load the tibble for all tracks
 essentia.data.allentown <- read_csv("data/essentia.data.allentown.csv")
-essentia.data <- read_csv("data/essentia.data.csv") 
+essentia.data <- read_csv("data/essentia.data.csv") #load the tibble for Allentown
+
+#attempt to get the general approach working for overall_loudness
 essentia.statistics <- essentia.data |>
-  group_by(artist) |>
+  group_by(artist) |> #Part 1 - group data by artist
   summarize(min = min(overall_loudness), #Part 2 - summarize the data by computing statistics
             LF = quantile(overall_loudness, 0.25) - 1.51*IQR(overall_loudness), 
             UF = quantile(overall_loudness, 0.75) + 1.51*IQR(overall_loudness), 
@@ -33,24 +41,27 @@ essentia.statistics <- essentia.data |>
     TRUE ~ "Within Range"))|>
   ungroup()
 
-#Create the function for analyzing each feature
-
-#function for analyzing each feature of the dataset
+################################################################################
+# Function for analyzing each feature of the dataset
+################################################################################
+#function takes in the feature to analyze
+#and outputs a tibble that contains statistical analysis for that feature 
+#compared with three bands of interest
 feature_analysis <- function(feature){
-  essentia.statistics <- essentia.data |>
+  essentia.statistics <- essentia.data |> #take input from Essentia data
     group_by(artist) |>
-    summarize(min = min(get(feature), na.rm = T), #Part 2 - summarize the data by computing statistics, remove NA
+    summarize(min = min(get(feature), na.rm = T), #summarize the data by computing statistics, remove NA
               LF = quantile(get(feature), 0.25, na.rm = T) - 1.51*IQR(get(feature), na.rm = T), 
               UF = quantile(get(feature), 0.75, na.rm = T) + 1.51*IQR(get(feature), na.rm = T), 
               max = max(get(feature), na.rm = T)) |>
-    #Part 3 - Create two new columns - out of range and unusual
+    #Create two new columns - out of range and unusual
     mutate(out.of.range = if_else(essentia.data.allentown[[feature]] < min | 
                                     essentia.data.allentown[[feature]] > max,
                                   T, F)) |>
     mutate(unusual =  if_else(essentia.data.allentown[[feature]] < LF | 
                                 essentia.data.allentown[[feature]] > UF,
                               T, F)) |>
-    #Part 4 - create a column description
+    #create a column description
     rowwise()|> #apply row by row
     mutate(description = case_when(
       out.of.range ~ "Out of Range",
@@ -62,48 +73,58 @@ feature_analysis <- function(feature){
 #Test if the function works for overall_loudness first
 stats.feature <- feature_analysis("overall_loudness")
 
-#craete a tibble to store feature comarison
+################################################################################
+# Step 2 - apply function to Essentia data to determine where Allentown differs
+################################################################################
+#create a tibble to store feature comparison for each of three bands
 stats.analysis.allentown <- tibble(Feature = character(), All.Get.Out = character(),
                                    Manchester.Orchestra = character(), 
                                    The.Front.Bottoms = character())
 
-
-#Apply function to essentia.data
+#Apply function to numerical features in essentia.data
 for (i in 4:length(colnames(essentia.data))){
   feature <- colnames(essentia.data)[i]
+  #disregard non-numerical columns
   if(feature != "chords_scale" & feature != "chords_key" & feature != "key" & feature != "mode"){
-    feature.analysis.allentown <- feature_analysis(feature)
-    new_row <- tibble(Feature = feature,
+    feature.analysis.allentown <- feature_analysis(feature) #call function
+    #extract description of feature range for each band
+    new_row <- tibble(Feature = feature, 
                       All.Get.Out = feature.analysis.allentown |> slice(1) |> pull("description"), 
                       Manchester.Orchestra = feature.analysis.allentown |> slice(2) |> pull("description"), 
                       The.Front.Bottoms = feature.analysis.allentown |> slice(3) |> pull("description"))
+    #append new row with a feature to the tibble
     stats.analysis.allentown <- bind_rows(stats.analysis.allentown, new_row)
   }
 }
 
-#summarize the features to create a table
+################################################################################
+# Step 3 - Create a table that summarizes select features
+################################################################################
+#create new tibble for count of features within range, out of range, and 
+#outlying for each band
 allentown.summary <- stats.analysis.allentown |>
-  select(-Feature) |>
-  pivot_longer(cols = everything(),
+  select(-Feature) |> #disregard feature column
+  pivot_longer(cols = everything(), #pivot data longer to count occurances
                names_to = "Artist",
                values_to = "Category") |>
-  count(Artist, Category) |>
-  pivot_wider(names_from = Artist, values_from = n)
+  count(Artist, Category) |> #count occurrence of each category
+  pivot_wider(names_from = Artist, values_from = n) #switch data so artists are columns
 
-#write a csv file to create a table from it
+#write a csv file to create a table from it in .Rbw
 write_csv(allentown.summary, "allentown.summary.csv", col_names = T)
-#allentown.summary <- read.csv("allentown.summary.csv")
+
+#creating a table
 table.allentown <-xtable(allentown.summary, label = "allentown.tab",
                          caption = "Comparison of Allentown's audio features with the range of band's features")
-align(table.allentown) <- "c|l|c|c|c|"
-print(table.allentown, include.rownames = F)
+align(table.allentown) <- "c|l|c|c|c|" #create vertical bars
+print(table.allentown, include.rownames = F) #print the table
 
-#create a column plot to summarize the data
-#create threww column plots one for each of three categories and all bands
-
-#pivot data longer to flip the coordinates
+################################################################################
+# Step 4 - Create a series of graphs to summarize impact
+################################################################################
+#create new tibble by pivoting data longer for graph creation
 long.allentown.summary <- allentown.summary |>
-  pivot_longer(cols = -Category, 
+  pivot_longer(cols = -Category, #count values for each category for each band
                names_to = "Band",
                values_to = "Count")
 
@@ -155,7 +176,7 @@ allentown.within.range.col.plot <- ggplot(within.range.filter)+
   guides(fill = "none")+
   theme_bw()
 
-#3 plots combines using facet_wrap()
+# 3 plots combined using facet_wrap()
 allentown.wrapped <- ggplot(long.allentown.summary)+
   geom_col(aes(x = Band,
                y = Count,
