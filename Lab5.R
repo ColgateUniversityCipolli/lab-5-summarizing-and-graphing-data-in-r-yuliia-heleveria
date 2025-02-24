@@ -4,6 +4,7 @@
 #load packages
 library("tidyverse")
 library("xtable")
+library("patchwork")
 
 #Coding Task
 #Step 1
@@ -153,3 +154,19 @@ allentown.within.range.col.plot <- ggplot(within.range.filter)+
   ylab("Within Range Count")+
   guides(fill = "none")+
   theme_bw()
+
+#3 plots combines using facet_wrap()
+allentown.wrapped <- ggplot(long.allentown.summary)+
+  geom_col(aes(x = Band,
+               y = Count,
+               fill = Band))+
+  scale_fill_manual(values = c("All.Get.Out" = "royalblue1", 
+                               "Manchester.Orchestra" = "plum2", 
+                               "The.Front.Bottoms" = "purple"))+
+  ylab("Range Check")+
+  guides(fill = "none")+
+  facet_wrap(~Category)+
+  theme_bw()
+
+#combine graphs using patchwork library
+combined.graphs <- allentown.out.of.range.col.plot + allentown.outlying.col.plot +allentown.within.range.col.plot
