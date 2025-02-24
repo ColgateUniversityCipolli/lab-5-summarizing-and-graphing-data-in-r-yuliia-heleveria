@@ -108,11 +108,10 @@ long.allentown.summary <- allentown.summary |>
 
 #filter out of range variables
 out.of.range.filter <- long.allentown.summary|>
-  filter(Category == 'Out of Range')|>
-  mutate(Band = as.factor(Band))
+  filter(Category == 'Out of Range')
 
 #out of range column plot
-allentown.col.plot <- ggplot(out.of.range.filter)+
+allentown.out.of.range.col.plot <- ggplot(out.of.range.filter)+
   geom_col(aes(x = Band,
                y = Count,
                fill = Band))+
@@ -120,5 +119,37 @@ allentown.col.plot <- ggplot(out.of.range.filter)+
                                "Manchester.Orchestra" = "plum2", 
                                "The.Front.Bottoms" = "purple"))+
   ylab("Out of Range Count")+
+  guides(fill = "none")+
+  theme_bw()
+
+#filter outlying variables
+outlying.filter <- long.allentown.summary|>
+  filter(Category == 'Outlying')
+
+#outlying column plot
+allentown.outlying.col.plot <- ggplot(outlying.filter)+
+  geom_col(aes(x = Band,
+               y = Count,
+               fill = Band))+
+  scale_fill_manual(values = c("All.Get.Out" = "royalblue1", 
+                               "Manchester.Orchestra" = "plum2", 
+                               "The.Front.Bottoms" = "purple"))+
+  ylab("Outlying Count")+
+  guides(fill = "none")+
+  theme_bw()
+
+#filter within range variables
+within.range.filter <- long.allentown.summary|>
+  filter(Category == 'Within Range')
+
+#within range column plot
+allentown.within.range.col.plot <- ggplot(within.range.filter)+
+  geom_col(aes(x = Band,
+               y = Count,
+               fill = Band))+
+  scale_fill_manual(values = c("All.Get.Out" = "royalblue1", 
+                               "Manchester.Orchestra" = "plum2", 
+                               "The.Front.Bottoms" = "purple"))+
+  ylab("Within Range Count")+
   guides(fill = "none")+
   theme_bw()
