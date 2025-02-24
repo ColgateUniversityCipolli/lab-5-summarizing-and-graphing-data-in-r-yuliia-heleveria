@@ -1,0 +1,198 @@
+Feature,All.Get.Out,Manchester.Orchestra,The.Front.Bottoms
+overall_loudness,Within Range,Within Range,Outlying
+spectral_energy,Within Range,Within Range,Within Range
+danceability,Within Range,Within Range,Out of Range
+tempo,Within Range,Within Range,Within Range
+duration,Within Range,Within Range,Within Range
+zerocrossingrate,Within Range,Within Range,Out of Range
+spectral_strongpeak,Within Range,Within Range,Within Range
+spectral_spread,Out of Range,Within Range,Within Range
+spectral_skewness,Outlying,Within Range,Out of Range
+spectral_rolloff,Out of Range,Within Range,Out of Range
+spectral_rms,Within Range,Within Range,Within Range
+spectral_kurtosis,Outlying,Within Range,Out of Range
+spectral_flux,Within Range,Within Range,Within Range
+spectral_entropy,Outlying,Within Range,Out of Range
+spectral_energyband_middle_low,Within Range,Within Range,Within Range
+spectral_energyband_middle_high,Out of Range,Within Range,Out of Range
+spectral_energyband_low,Within Range,Within Range,Within Range
+spectral_energyband_high,Within Range,Within Range,Within Range
+spectral_decrease,Within Range,Within Range,Within Range
+spectral_complexity,Out of Range,Within Range,Out of Range
+spectral_centroid,Out of Range,Within Range,Out of Range
+silence_rate_60dB,Within Range,Within Range,Outlying
+silence_rate_30dB,Within Range,Within Range,Within Range
+silence_rate_20dB,Within Range,Within Range,Within Range
+pitch_salience,Within Range,Within Range,Within Range
+melbands_spread,Out of Range,Within Range,Out of Range
+melbands_skewness,Outlying,Within Range,Within Range
+melbands_kurtosis,Out of Range,Outlying,Outlying
+melbands_flatness_db,Out of Range,Within Range,Out of Range
+melbands_crest,Within Range,Within Range,Within Range
+loudness_ebu128_short_term,Within Range,Within Range,Out of Range
+loudness_ebu128_momentary,Within Range,Within Range,Out of Range
+loudness_ebu128_loudness_range,Within Range,Within Range,Out of Range
+hfc,Within Range,Within Range,Out of Range
+erbbands_spread,Within Range,Within Range,Within Range
+erbbands_skewness,Out of Range,Within Range,Out of Range
+erbbands_kurtosis,Out of Range,Outlying,Out of Range
+erbbands_flatness_db,Outlying,Within Range,Out of Range
+dynamic_complexity,Within Range,Within Range,Outlying
+dissonance,Outlying,Within Range,Out of Range
+barkbands_spread,Within Range,Within Range,Out of Range
+barkbands_skewness,Out of Range,Within Range,Out of Range
+barkbands_kurtosis,Out of Range,Within Range,Out of Range
+barkbands_flatness_db,Outlying,Within Range,Out of Range
+barkbands_crest,Within Range,Within Range,Within Range
+average_loudness,Outlying,Within Range,Outlying
+beats_count,Within Range,Within Range,Within Range
+beats_loudness,Within Range,Within Range,Within Range
+bpm_histogram_first_peak_bpm,Within Range,Within Range,Within Range
+bpm_histogram_first_peak_weight,Within Range,Within Range,Within Range
+bpm_histogram_second_peak_bpm,Within Range,Within Range,Within Range
+bpm_histogram_second_peak_spread,Within Range,Within Range,Within Range
+bpm_histogram_second_peak_weight,Within Range,Within Range,Within Range
+onset_rate,Within Range,Within Range,Out of Range
+tuning_nontempered_energy_ratio,Within Range,Within Range,Within Range
+tuning_frequency,Within Range,Within Range,Within Range
+tuning_equal_tempered_deviation,Within Range,Within Range,Within Range
+tuning_diatonic_strength,Within Range,Within Range,Within Range
+hpcp_entropy,Within Range,Within Range,Within Range
+hpcp_crest,Within Range,Within Range,Within Range
+chords_strength,Outlying,Within Range,Out of Range
+chords_number_rate,Within Range,Within Range,Within Range
+chords_changes_rate,Within Range,Within Range,Within Range
+approachability,Within Range,Within Range,Within Range
+engagement,Outlying,Within Range,Within Range
+valence,Within Range,Within Range,Out of Range
+arousal,Within Range,Within Range,Within Range
+model_danceability,Within Range,Within Range,Within Range
+aggressive,Within Range,Within Range,Within Range
+happy,Within Range,Within Range,Within Range
+party,Within Range,Within Range,Within Range
+relax,Within Range,Within Range,Within Range
+sad,Within Range,Within Range,Within Range
+acoustic,Within Range,Within Range,Within Range
+electronic,Within Range,Within Range,Within Range
+instrumental,Within Range,Within Range,Within Range
+timbreBright,Within Range,Within Range,Within Range
+WC,Within Range,Within Range,Within Range
+Analytic,Outlying,Outlying,Out of Range
+Clout,Within Range,Within Range,Within Range
+Authentic,Outlying,Within Range,Within Range
+Tone,Within Range,Within Range,Within Range
+WPS,Within Range,Within Range,Within Range
+BigWords,Within Range,Within Range,Within Range
+Dic,Within Range,Within Range,Within Range
+Linguistic,Within Range,Within Range,Within Range
+fnct,Within Range,Within Range,Within Range
+pronoun,Within Range,Within Range,Within Range
+ppron,Within Range,Within Range,Within Range
+i,Within Range,Within Range,Within Range
+we,Within Range,Within Range,Within Range
+you,Within Range,Out of Range,Within Range
+shehe,Within Range,Within Range,Within Range
+they,Within Range,Within Range,Within Range
+ipron,Within Range,Within Range,Within Range
+det,Outlying,Out of Range,Out of Range
+article,Within Range,Within Range,Within Range
+number,Within Range,Within Range,Within Range
+prep,Out of Range,Out of Range,Outlying
+auxverb,Within Range,Within Range,Within Range
+adverb,Within Range,Within Range,Within Range
+conj,Out of Range,Outlying,Within Range
+negate,Within Range,Within Range,Within Range
+verb,Within Range,Within Range,Within Range
+adj,Within Range,Within Range,Within Range
+quantity,Within Range,Within Range,Within Range
+Drives,Within Range,Within Range,Within Range
+affiliation,Within Range,Within Range,Within Range
+achieve,Within Range,Within Range,Within Range
+power,Within Range,Within Range,Outlying
+Cognition,Out of Range,Within Range,Within Range
+allnone,Within Range,Within Range,Within Range
+cogproc,Out of Range,Within Range,Within Range
+insight,Within Range,Within Range,Within Range
+cause,Within Range,Within Range,Within Range
+discrep,Out of Range,Within Range,Within Range
+tentat,Within Range,Within Range,Within Range
+certitude,Within Range,Within Range,Within Range
+differ,Within Range,Within Range,Within Range
+memory,Within Range,Within Range,Within Range
+Affect,Within Range,Within Range,Within Range
+tone_pos,Within Range,Within Range,Within Range
+tone_neg,Within Range,Within Range,Within Range
+emotion,Within Range,Within Range,Within Range
+emo_pos,Within Range,Within Range,Within Range
+emo_neg,Within Range,Within Range,Within Range
+emo_anx,Within Range,Within Range,Within Range
+emo_anger,Within Range,Within Range,Within Range
+emo_sad,Within Range,Within Range,Within Range
+swear,Within Range,Within Range,Within Range
+Social,Within Range,Within Range,Within Range
+socbehav,Within Range,Within Range,Within Range
+prosocial,Within Range,Within Range,Within Range
+polite,Within Range,Within Range,Within Range
+conflict,Within Range,Within Range,Within Range
+moral,Within Range,Within Range,Within Range
+comm,Within Range,Within Range,Within Range
+socrefs,Within Range,Within Range,Within Range
+family,Within Range,Within Range,Within Range
+friend,Within Range,Within Range,Within Range
+female,Within Range,Within Range,Within Range
+male,Within Range,Within Range,Within Range
+Culture,Within Range,Within Range,Within Range
+politic,Within Range,Within Range,Within Range
+ethnicity,Within Range,Within Range,Within Range
+tech,Within Range,Within Range,Within Range
+Lifestyle,Within Range,Within Range,Within Range
+leisure,Within Range,Within Range,Within Range
+home,Within Range,Within Range,Within Range
+work,Outlying,Outlying,Outlying
+money,Within Range,Within Range,Within Range
+relig,Out of Range,Outlying,Outlying
+Physical,Within Range,Within Range,Within Range
+health,Within Range,Within Range,Within Range
+illness,Outlying,Outlying,Outlying
+wellness,Within Range,Within Range,Within Range
+mental,Within Range,Within Range,Within Range
+substances,Out of Range,Outlying,Outlying
+sexual,Within Range,Within Range,Within Range
+food,Within Range,Within Range,Within Range
+death,Within Range,Within Range,Within Range
+need,Within Range,Within Range,Within Range
+want,Within Range,Within Range,Within Range
+acquire,Within Range,Within Range,Within Range
+lack,Within Range,Within Range,Within Range
+fulfill,Within Range,Within Range,Within Range
+fatigue,Within Range,Within Range,Within Range
+reward,Within Range,Within Range,Within Range
+risk,Within Range,Within Range,Within Range
+curiosity,Out of Range,Outlying,Out of Range
+allure,Within Range,Within Range,Within Range
+Perception,Out of Range,Within Range,Out of Range
+attention,Within Range,Within Range,Within Range
+motion,Within Range,Within Range,Within Range
+space,Within Range,Within Range,Within Range
+visual,Within Range,Within Range,Within Range
+auditory,Within Range,Within Range,Within Range
+feeling,Within Range,Within Range,Within Range
+time,Out of Range,Within Range,Within Range
+focuspast,Within Range,Within Range,Within Range
+focuspresent,Within Range,Within Range,Within Range
+focusfuture,Within Range,Within Range,Within Range
+Conversation,Within Range,Within Range,Within Range
+netspeak,Within Range,Within Range,Within Range
+assent,Within Range,Within Range,Within Range
+nonflu,Within Range,Within Range,Within Range
+filler,Within Range,Within Range,Within Range
+AllPunc,Within Range,Within Range,Within Range
+Period,Within Range,Within Range,Within Range
+Comma,Within Range,Within Range,Within Range
+QMark,Within Range,Within Range,Within Range
+Exclam,Within Range,Within Range,Within Range
+Apostro,Within Range,Within Range,Within Range
+OtherP,Outlying,Outlying,Within Range
+Emoji,Within Range,Within Range,Within Range
+positivewords,Outlying,Outlying,Within Range
+negativewords,Within Range,Within Range,Within Range

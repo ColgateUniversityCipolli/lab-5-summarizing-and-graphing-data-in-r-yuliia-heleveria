@@ -3,6 +3,7 @@
 
 #load packages
 library("tidyverse")
+library("xtable")
 
 #Coding Task
 #Step 1
@@ -78,4 +79,20 @@ for (i in 4:length(colnames(essentia.data))){
     stats.analysis.allentown <- bind_rows(stats.analysis.allentown, new_row)
   }
 }
+
+#summarize the features to create a table
+allentown.summary <- stats.analysis.allentown |>
+  select(-Feature) |>
+  pivot_longer(cols = everything(),
+               names_to = "Artist",
+               values_to = "Category") |>
+  count(Artist, Category) |>
+  pivot_wider(names_from = Artist, values_from = n)
+
+#write a csv file to create a table from it
+write_csv(allentown.summary, "allentown.summary.csv", col_names = T)
+
+#write_csv(stats.analysis.allentown, "allentown.analysis.csv", col_names = T)
+#table.allentown <- xtable(stats.analysis.allentown, caption = "Allentown Compared to Band Features")
+
 

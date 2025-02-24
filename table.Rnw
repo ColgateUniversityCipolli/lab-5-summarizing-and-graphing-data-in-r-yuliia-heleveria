@@ -1,0 +1,11 @@
+\documentclass{article}
+
+\begin{document}
+
+<<size='scriptsize'>>=
+library(xtable)
+allentown.summary <- read.csv("allentown.summary.csv")
+@
+
+
+\end{document}
