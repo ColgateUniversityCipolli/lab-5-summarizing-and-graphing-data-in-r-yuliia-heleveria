@@ -91,8 +91,34 @@ allentown.summary <- stats.analysis.allentown |>
 
 #write a csv file to create a table from it
 write_csv(allentown.summary, "allentown.summary.csv", col_names = T)
+#allentown.summary <- read.csv("allentown.summary.csv")
+table.allentown <-xtable(allentown.summary, label = "allentown.tab",
+                         caption = "Comparison of Allentown's audio features with the range of band's features")
+align(table.allentown) <- "c|l|c|c|c|"
+print(table.allentown, include.rownames = F)
 
-#write_csv(stats.analysis.allentown, "allentown.analysis.csv", col_names = T)
-#table.allentown <- xtable(stats.analysis.allentown, caption = "Allentown Compared to Band Features")
+#create a column plot to summarize the data
+#create threww column plots one for each of three categories and all bands
 
+#pivot data longer to flip the coordinates
+long.allentown.summary <- allentown.summary |>
+  pivot_longer(cols = -Category, 
+               names_to = "Band",
+               values_to = "Count")
 
+#filter out of range variables
+out.of.range.filter <- long.allentown.summary|>
+  filter(Category == 'Out of Range')|>
+  mutate(Band = as.factor(Band))
+
+#out of range column plot
+allentown.col.plot <- ggplot(out.of.range.filter)+
+  geom_col(aes(x = Band,
+               y = Count,
+               fill = Band))+
+  scale_fill_manual(values = c("All.Get.Out" = "royalblue1", 
+                               "Manchester.Orchestra" = "plum2", 
+                               "The.Front.Bottoms" = "purple"))+
+  ylab("Out of Range Count")+
+  guides(fill = "none")+
+  theme_bw()
