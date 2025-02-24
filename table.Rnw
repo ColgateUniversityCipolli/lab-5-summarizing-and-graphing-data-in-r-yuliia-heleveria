@@ -2,9 +2,13 @@
 
 \begin{document}
 
-<<size='scriptsize'>>=
+<<echo = FALSE, results = 'asis', size='scriptsize'>>=
 library(xtable)
 allentown.summary <- read.csv("allentown.summary.csv")
+table.allentown <-xtable(allentown.summary, label = "allentown.tab",
+                         caption = "Comparison of Allentown's audio features with the range of band's features")
+align(table.allentown) <- "c|l|c|c|c|"
+print(table.allentown, include.rownames = F)
 @
 
 

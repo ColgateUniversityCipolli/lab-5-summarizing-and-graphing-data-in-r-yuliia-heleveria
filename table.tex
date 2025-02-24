@@ -52,14 +52,23 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
-\begin{knitrout}\scriptsize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{library}\hldef{(xtable)}
-\hldef{allentown.summary} \hlkwb{<-} \hlkwd{read.csv}\hldef{(}\hlsng{"allentown.summary.csv"}\hldef{)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+% latex table generated in R 4.4.2 by xtable 1.8-4 package
+% Sun Feb 23 23:54:29 2025
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|c|c|c|}
+  \hline
+Category & All.Get.Out & Manchester.Orchestra & The.Front.Bottoms \\ 
+  \hline
+Out of Range &  22 &   3 &  30 \\ 
+  Outlying &  17 &  11 &  11 \\ 
+  Within Range & 158 & 183 & 156 \\ 
+   \hline
+\end{tabular}
+\caption{Comparison of Allentown's audio features with the range of band's features} 
+\label{allentown.tab}
+\end{table}
+
 
 
 \end{document}
