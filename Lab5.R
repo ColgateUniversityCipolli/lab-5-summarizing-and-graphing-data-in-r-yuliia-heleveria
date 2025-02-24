@@ -32,18 +32,15 @@ essentia.statistics <- essentia.data |>
   ungroup()
 
 #Create the function for analyzing each feature
-for (i in 1:length(essentia.data)){
-  print(i)
-}
 
 #function for analyzing each feature of the dataset
 feature_analysis <- function(feature){
   essentia.statistics <- essentia.data |>
     group_by(artist) |>
-    summarize(min = min(get(feature)), #Part 2 - summarize the data by computing statistics
-              LF = quantile(get(feature), 0.25) - 1.51*IQR(get(feature)), 
-              UF = quantile(get(feature), 0.75) + 1.51*IQR(get(feature)), 
-              max = max(get(feature))) |>
+    summarize(min = min(get(feature), na.rm = T), #Part 2 - summarize the data by computing statistics, remove NA
+              LF = quantile(get(feature), 0.25, na.rm = T) - 1.51*IQR(get(feature), na.rm = T), 
+              UF = quantile(get(feature), 0.75, na.rm = T) + 1.51*IQR(get(feature), na.rm = T), 
+              max = max(get(feature), na.rm = T)) |>
     #Part 3 - Create two new columns - out of range and unusual
     mutate(out.of.range = if_else(essentia.data.allentown[[feature]] < min | 
                                     essentia.data.allentown[[feature]] > max,
@@ -60,4 +57,25 @@ feature_analysis <- function(feature){
     ungroup()
 }
 
+#Test if the function works for overall_loudness first
 stats.feature <- feature_analysis("overall_loudness")
+
+#craete a tibble to store feature comarison
+stats.analysis.allentown <- tibble(Feature = character(), All.Get.Out = character(),
+                                   Manchester.Orchestra = character(), 
+                                   The.Front.Bottoms = character())
+
+
+#Apply function to essentia.data
+for (i in 4:length(colnames(essentia.data))){
+  feature <- colnames(essentia.data)[i]
+  if(feature != "chords_scale" & feature != "chords_key" & feature != "key" & feature != "mode"){
+    feature.analysis.allentown <- feature_analysis(feature)
+    new_row <- tibble(Feature = feature,
+                      All.Get.Out = feature.analysis.allentown |> slice(1) |> pull("description"), 
+                      Manchester.Orchestra = feature.analysis.allentown |> slice(2) |> pull("description"), 
+                      The.Front.Bottoms = feature.analysis.allentown |> slice(3) |> pull("description"))
+    stats.analysis.allentown <- bind_rows(stats.analysis.allentown, new_row)
+  }
+}
+
