@@ -186,7 +186,7 @@ allentown.wrapped <- ggplot(long.allentown.summary)+
   scale_fill_manual(values = c("All.Get.Out" = "royalblue1", 
                                "Manchester.Orchestra" = "plum2", 
                                "The.Front.Bottoms" = "purple"))+
-  ylab("Range Check")+
+  ylab("Numer of features")+
   guides(fill = "none")+
   facet_wrap(~Category)+
   theme_bw()
