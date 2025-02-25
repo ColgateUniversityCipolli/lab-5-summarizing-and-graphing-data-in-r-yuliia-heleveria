@@ -39,34 +39,34 @@
 
 \begin{multicols}{2}
 \begin{abstract}
-We want to analyze the significance of contributions of The Front Bottoms, Manchester Orchestra, and All Get Out to their collaborative song ``Allentown''. Therefore, we created a batch file to speed up data collection for audio analysis. The batch file contains 181 commands referring to 77 tracks by Manchester Orchestra, 61 by The Front Bottoms, 42 by All Get Out, and one collaborative track ``Allentown''. We analyzed musical characteristics of .WAV files belonging to three bands, creating a data frame that contains audio analysis, such as valence, instrumental and acoustic characteristics, emotional impact, loudness, as well as lyric analysis. We loaded, organized, and cleaned the data to perform analysis regarding characteristics of each band's tracks and their similarity with ``Allentown''. 
+We want to analyze the contributions of The Front Bottoms, Manchester Orchestra, and All Get Out to their collaborative song ``Allentown'' using audio analysis. Therefore, we created a batch file to speed up data collection for audio features. The batch file contains 181 commands referring to 77 tracks by Manchester Orchestra, 61 by The Front Bottoms, 42 by All Get Out, and one collaborative track ``Allentown''. We analyzed musical characteristics of .WAV files from three bands, including valence, instrumental and acoustic features, emotional impact, loudness, and lyrics. We loaded and cleaned the data to perform analysis regarding characteristics of each band's tracks and their similarity with ``Allentown''. 
 \end{abstract}
 
 \noindent \textbf{Keywords:} Installing and using libraries; creating, cleaning, and merging data frames; looping structure; vectors and lists operations.
 
 \section{Introduction}
-``Allentown'' is a song released in 2018 by collaboration of The Front Bottoms and Manchester Orchestra. We would like to inspect which band made the most contribution to this song. To achieve correct analysis, we purchased all releases before ``Allentown'', which consists of 180 tracks, or 181 including Allentown itself.
+``Allentown'' is a song released in 2018 by collaboration of The Front Bottoms and Manchester Orchestra. We would like to inspect which band made the most contribution to this song. We purchased all pre-``Allentown'' releases, totaling 181 tracks, including Allentown itself.
 We use Essentia \citep{bogdanov2013essentia} to analyze, synthesize, and describe data about 181 songs to determine the musician who makes the most contribution to ``Allentown''. We analyze the style and characteristics of tracks, such as valence, arousal, emotions, and absence of voice or acoustic features, belonging to each band to determine stylistic features that resonate the most with ``Allentown''. 
 
 This paper is structured as follows: In Section 2, we summarize the process of collecting, loading, and cleaning of data. Section 3 presents the outcome of data manipulation and analysis. In Section 4, we interpret the findings obtained by analyzing audio data given from 180 tracks of The Front Bottoms, Manchester Orchestra, and All Get Out compared to ``Allentown''.
 
 \section{Methods}
-For the purpose of data collection, we were given Essentia models of 181 songs of interest. We used \texttt{stringr} package \citep{stringr} to create a batch file that creates command line prompts for each track. With the use of the batch file, we analyzed .WAV files for track characteristics, such as tempo in beats and average loudness.
+For the purpose of data collection, we were given Essentia models \citep{alonso2020tensorflow} of 181 songs of interest. We used \texttt{stringr} package \citep{stringr} to create a batch file that creates command line prompts for each track. With the use of the batch file, we analyzed .WAV files for track characteristics, such as tempo in beats and average loudness.
 
-Using \texttt{jsonlite} package for \texttt{R} \citep{jsonlite}, we extracted stylistic features of provided songs. We used \texttt{fromJSON()} to load JSON file containing music analysis into \texttt{R} and analyze average loudness, mean of spectral energy, dancebility, tempo in beats per minute, musical key, musical mode and duration of the track in seconds. 
+Using \texttt{jsonlite} package for \texttt{R} \citep{jsonlite}, we extracted stylistic features of provided songs. We used \texttt{fromJSON()} to load JSON file containing music analysis into \texttt{R} and analyze average loudness, mean of spectral energy, dancebility, tempo in beats per minute, musical key, musical mode and duration of the track in seconds. We aslo used LIWC text analysis tool \citep{boyd2022development} to extract features that describe thoughts, feelings, and personality traits.
 
 We loaded the data frame given from Essentia Model for 181 songs, including songs' valence, arousal, aggressiveness, acoustic and instrumental features. At the end, we merged three data frames and saved them to .csv files to combine output about lyrics and Essentia audio analysis. 
 
-Using \texttt{tidyverse} package \citep{tidyverse}, we summarized data numerically for each feature of interest. We computed minimum, maximum, lower and upper fences for each feature for All Get Out, Manchester Orchestra, and The Front Bottoms to determine if ``Allentown'''s feature is within range or outlying for each band. Based of the statistical summaries, we computed visual aids of a table and column plots to determine how ``Allentown'' differs of music of each band based on the count of how many features of ``Allentown'' are within range and out of range for each band..
+Using \texttt{tidyverse} package \citep{tidyverse}, we summarized data numerically for each feature of interest. We computed minimum, maximum, lower and upper fences for each feature for All Get Out, Manchester Orchestra, and The Front Bottoms to determine if ``Allentown'''s feature is within range or outlying for each band. Based of the statistical summaries, we computed visual aids of a table using \texttt{xtable} library \citep{xtable} and column plots using \texttt{tidyverse} to determine how ``Allentown'' differs of music of each band based on the count of how many features of ``Allentown'' are within range and out of range for each band..
 
 
 \section{Results}
 By creating a batch file, we significantly decreased the amount of time for data collection from multiple tracks at the same time using Essentia command line prompts. ``Allentown'' and its data was written separately into a different .csv file for data testing and determining the main band's contributions based on audio and lyrics analysis. The resulting .csv files contain data regarding spectral energy, tempo, dissonance, danceability, valence, happiness, tone, pronouns, etc. to derive conclusions of stylistic dominant features of each band in comparison of style with ``Allentown''. Three side-by-side column plots that demonstrate the count of features for each band that are outlying or that lie within range or out of range of ``Allentown'' demonstrate that Manchester Orchestra has the largest contribution to the collaborative track. Manchester Orchestra has the most musical features that lie within range of ``Allentown'' and the fewest features that are out of range. 
 
 \section{Discussion}
-Manchester Orchestra has the most similar audio features to ``Allentown''. All Get Out has the second most similar audio features to ``Allentown'' because it has fewer out of range and more in range features than The Front Bottoms has. However, Manchester Orchestra has significantly fewer out of range features than the other two bands, which leads us to conclude that Manchester Orchestra has the largest contributions to ``Allentown''.
+We performed preliminary data analysis by creating \texttt{boxplot} that represent relation of data from ``Allentown'' in comparison to median values of the same data collected from three artists who participated in the song creation. 
+Comparing the vertical line that represented ``Allentown'' in each plot, we cannot come to a conclusion of which artist has the closest audio style to ``Allentown''. In terms of overall loudness, ``Allentown'' is most similar to style of Manchester Orchestra, but ``Allentown'' has the overall word count of the median of The Front Bottoms tracks. In regard to aggressiveness, ``Allentown'' is the most similar to tracks by All Get Out. It is evident that three bands stylistically contribute to different audio featires of ``Allentown'', but more data analysis has to be performed to determine which band had the most contribution to creating the collaborative song.
 
-It is easier to collect a significant amount of data if we have a batch file that runs command lines for every track of a given band. A for loop and libraries are helpful for simplifying creation of the batch file and data collection using the Essentia model. When we cleaned the data, we summarized certain variables to keep only significant information that will help us determine band contributions. We created new data frames and merged three data sources together to provide easier navigation of information. All of written data in the training .csv file could be used when analyzing contributions of The Front Bottoms and Manchester Orchestra to ``Allentown''.
 
 %Code for creating an xtable and column plots
 
@@ -106,7 +106,6 @@ loudness.line <- testingData$overall.Loudness
 boxplot(overall.Loudness~ artist, data = trainingData, horizontal = T, col = "bisque",
         xlab = "overall loudness", names = artist.labels, main = "Overall loudness for each artist")
 abline(v=loudness.line) # adds a vertical line to represent Allentown
-title(sub = "Vertical line represents 'Allentown' by TFB and MO")
 @
 
 <<plot2, echo=FALSE, eval=FALSE, size='scriptsize', >>=
@@ -119,7 +118,6 @@ wc.line <- testingData$WC
 boxplot(WC~ artist, data = trainingData, horizontal = T, col = "bisque",
         xlab = "word count", names = artist.labels, main = "Overall word count for each artist")
 abline(v=wc.line) # adds a vertical line to represent Allentown
-title(sub = "Vertical line represents 'Allentown' by TFB and MO")
 @
 
 <<plot3, echo=FALSE, eval=FALSE, size='scriptsize', >>=
@@ -132,21 +130,32 @@ aggressive.line <- testingData$aggressive
 boxplot(aggressive~ artist, data = trainingData, horizontal = T, col = "bisque",
         names = artist.labels, main = "Overall agressivness for each artist")
 abline(v=aggressive.line) # adds a vertical line to represent Allentown
-title(sub = "Vertical line represents 'Allentown' by TFB and MO")
 @
 
 %Call the boxplots
-<<echo=FALSE, size='scriptsize', >>=
+\begin{figure}[H]
+<<echo=FALSE, size='scriptsize', fig.dim=c(5,5)>>=
 <<plot1>>
 @
-<<echo=FALSE, size='scriptsize', >>=
+\caption{Vertical line represents ``Allentown''} \label{plot1}
+\end{figure}
+
+\begin{figure}[H]
+<<echo=FALSE, size='scriptsize', fig.dim=c(5,5)>>=
 <<plot2>>
 @
-<<echo=FALSE, size='scriptsize', >>=
+\caption{Vertical line represents ``Allentown''} \label{plot2}
+\end{figure}
+
+\begin{figure}[H]
+<<echo=FALSE, size='scriptsize', fig.dim=c(5,5)>>=
 <<plot3>>
 @
-We performed preliminary data analysis by creating \texttt{boxplot} that represent relation of data from ``Allentown'' in comparison to median values of the same data collected from three artists who participated in the song creation. 
-Comparing the vertical line that represented ``Allentown'' in each plot, we cannot come to a conclusion of which artist has the closest audio style to ``Allentown''. In terms of overall loudness, ``Allentown'' is most similar to style of Manchester Orchestra, but ``Allentown'' has the overall word count as the median of The Front Bottoms tracks. In regard to aggressiveness, ``Allentown'' is the most similar to tracks by All Get Out. Therefore, more data analysis has to be performed to determine which band had the most contribution to creating ``Allentown''.
+\caption{Vertical line represents ``Allentown''} \label{plot3}
+\end{figure}
+
+After analysis of all given features, it is evident that Manchester Orchestra has the most similar audio features to ``Allentown''. All Get Out has the second most similar audio features to ``Allentown'' because it has fewer out of range and more in range features than The Front Bottoms has (\ref{plot.allen}). However, Manchester Orchestra has significantly fewer out of range features than the other two bands, which leads us to conclude that Manchester Orchestra has the largest contributions to ``Allentown''.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -177,7 +186,7 @@ print(table.allentown, include.rownames = F)
 <<echo=FALSE, warning=FALSE, message=FALSE, fig.dim=c(5,3.5)>>=
 <<plot.allen>>
 @
-\caption{Comparison of Allentown's audio features with the range of band's features} \label{plot1}
+\caption{Comparison of Allentown's audio features with the range of band's features} \label{plot.allen}
 \end{center}
 \end{figure}
 
