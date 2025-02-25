@@ -11,5 +11,37 @@ align(table.allentown) <- "c|l|c|c|c|"
 print(table.allentown, include.rownames = F)
 @
 
+%code to process before graphs begin
+<<echo=FALSE, message = FALSE, warning = FALSE, size='scriptsize' >>=
+library("tidyverse")
+library("patchwork")
+long.allentown.summary <- read_csv("long.allentown.summary.csv")
+@
+<<echo=FALSE, message = FALSE, size='scriptsize' >>=
+# 3 plots combined using facet_wrap()
+allentown.wrapped <- ggplot(long.allentown.summary)+
+  geom_col(aes(x = Band,
+               y = Count,
+               fill = Band))+
+  scale_fill_manual(values = c("All.Get.Out" = "royalblue1", 
+                               "Manchester.Orchestra" = "plum2", 
+                               "The.Front.Bottoms" = "purple"))+
+  ylab("Range Check")+
+  guides(fill = guide_legend(title = "Band"))+
+  facet_wrap(~Category)+
+  theme_bw()+
+  theme(axis.text.x = element_blank())
+@
+<<plot1, eval = FALSE, echo=FALSE, size='scriptsize'>>=
+allentown.wrapped
+@
+
+\begin{figure}
+<<echo=FALSE, warning=FALSE, message=FALSE, fig.dim=c(5,3.5)>>=
+<<plot1>>
+@
+\caption{Comparison of Allentown's audio features with the range of band's features} \label{plot1} 
+\end{figure}
+
 
 \end{document}

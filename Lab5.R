@@ -127,6 +127,8 @@ long.allentown.summary <- allentown.summary |>
   pivot_longer(cols = -Category, #count values for each category for each band
                names_to = "Band",
                values_to = "Count")
+#write into .csv to create a graph in .Rnw
+write_csv(long.allentown.summary, "long.allentown.summary.csv", col_names = T)
 
 #filter out of range variables
 out.of.range.filter <- long.allentown.summary|>
