@@ -1,4 +1,54 @@
-\documentclass{article}
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlsng}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hldef}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
 \usepackage{amsmath} %This allows me to use the align functionality.
                      %If you find yourself trying to replicate
                      %something you found online, ensure you're
@@ -21,6 +71,7 @@
 \newenvironment{Figure}
   {\par\medskip\noindent\minipage{\linewidth}}
   {\endminipage\par\medskip}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
 \vspace{-1in}
@@ -71,80 +122,30 @@ It is easier to collect a significant amount of data if we have a batch file tha
 %Code for creating an xtable and column plots
 
 %code to process before graphs begin
-<<echo=FALSE, message = FALSE, warning = FALSE, size='scriptsize' >>=
-library("tidyverse")
-library("patchwork")
-long.allentown.summary <- read_csv("long.allentown.summary.csv")
-@
-<< echo=FALSE, size='scriptsize'>>=
-# 3 plots combined using facet_wrap()
-allentown.wrapped <- ggplot(long.allentown.summary)+
-  geom_col(aes(x = Band,
-               y = Count,
-               fill = Band))+
-  scale_fill_manual(values = c("All.Get.Out" = "royalblue1", 
-                               "Manchester.Orchestra" = "plum2", 
-                               "The.Front.Bottoms" = "purple"))+
-  ylab("Range Check")+
-  guides(fill = guide_legend(title = "Band"))+
-  facet_wrap(~Category)+
-  theme_bw()+
-  theme(axis.text.x = element_blank())
-@
-<<plot.allen, eval = FALSE, echo=FALSE, size='scriptsize'>>=
-allentown.wrapped
-@
+
+
+
 
 %Code for creating boxplots to represent artist data
-<<plot1, echo=FALSE, eval=FALSE, size='scriptsize', >>=
-testingData <- read.csv("testingData.csv")
-trainingData <- read.csv("trainingData.csv")
-artist.labels <- c("AGO", "MO", "TFB") # labels for boxplots
 
-#overall loudness
-loudness.line <- testingData$overall.Loudness
-boxplot(overall.Loudness~ artist, data = trainingData, horizontal = T, col = "bisque",
-        xlab = "overall loudness", names = artist.labels, main = "Overall loudness for each artist")
-abline(v=loudness.line) # adds a vertical line to represent Allentown
-title(sub = "Vertical line represents 'Allentown' by TFB and MO")
-@
 
-<<plot2, echo=FALSE, eval=FALSE, size='scriptsize', >>=
-testingData <- read.csv("testingData.csv")
-trainingData <- read.csv("trainingData.csv")
-artist.labels <- c("AGO", "MO", "TFB") # labels for boxplots
 
-#word count
-wc.line <- testingData$WC
-boxplot(WC~ artist, data = trainingData, horizontal = T, col = "bisque",
-        xlab = "word count", names = artist.labels, main = "Overall word count for each artist")
-abline(v=wc.line) # adds a vertical line to represent Allentown
-title(sub = "Vertical line represents 'Allentown' by TFB and MO")
-@
 
-<<plot3, echo=FALSE, eval=FALSE, size='scriptsize', >>=
-testingData <- read.csv("testingData.csv")
-trainingData <- read.csv("trainingData.csv")
-artist.labels <- c("AGO", "MO", "TFB") # labels for boxplots
 
-#aggressive
-aggressive.line <- testingData$aggressive
-boxplot(aggressive~ artist, data = trainingData, horizontal = T, col = "bisque",
-        names = artist.labels, main = "Overall agressivness for each artist")
-abline(v=aggressive.line) # adds a vertical line to represent Allentown
-title(sub = "Vertical line represents 'Allentown' by TFB and MO")
-@
 
 %Call the boxplots
-<<echo=FALSE, size='scriptsize', >>=
-<<plot1>>
-@
-<<echo=FALSE, size='scriptsize', >>=
-<<plot2>>
-@
-<<echo=FALSE, size='scriptsize', >>=
-<<plot3>>
-@
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-3-1} 
+\end{knitrout}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-4-1} 
+\end{knitrout}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-5-1} 
+\end{knitrout}
 We performed preliminary data analysis by creating \texttt{boxplot} that represent relation of data from ``Allentown'' in comparison to median values of the same data collected from three artists who participated in the song creation. 
 Comparing the vertical line that represented ``Allentown'' in each plot, we cannot come to a conclusion of which artist has the closest audio style to ``Allentown''. In terms of overall loudness, ``Allentown'' is most similar to style of Manchester Orchestra, but ``Allentown'' has the overall word count as the median of The Front Bottoms tracks. In regard to aggressiveness, ``Allentown'' is the most similar to tracks by All Get Out. Therefore, more data analysis has to be performed to determine which band had the most contribution to creating ``Allentown''.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -163,20 +164,30 @@ Comparing the vertical line that represented ``Allentown'' in each plot, we cann
 \onecolumn
 \section{Appendix}
 %creating an xtable
-<<echo = FALSE, results = 'asis', size='scriptsize'>>=
-library(xtable)
-allentown.summary <- read.csv("allentown.summary.csv")
-table.allentown <-xtable(allentown.summary, label = "allentown.tab",
-                         caption = "Comparison of Allentown's audio features with the range of band's features")
-align(table.allentown) <- "c|l|c|c|c|"
-print(table.allentown, include.rownames = F)
-@
+% latex table generated in R 4.4.2 by xtable 1.8-4 package
+% Mon Feb 24 23:58:19 2025
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|c|c|c|}
+  \hline
+Category & All.Get.Out & Manchester.Orchestra & The.Front.Bottoms \\ 
+  \hline
+Out of Range &  22 &   3 &  30 \\ 
+  Outlying &  17 &  11 &  11 \\ 
+  Within Range & 158 & 183 & 156 \\ 
+   \hline
+\end{tabular}
+\caption{Comparison of Allentown's audio features with the range of band's features} 
+\label{allentown.tab}
+\end{table}
+
 
 %creating column plots
 \begin{figure}[H] \begin{center}
-<<echo=FALSE, warning=FALSE, message=FALSE, fig.dim=c(5,3.5)>>=
-<<plot.allen>>
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-1} 
+\end{knitrout}
 \caption{Comparison of Allentown's audio features with the range of band's features} \label{plot1}
 \end{center}
 \end{figure}
